@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cálculo de Triángulo con Flask y Bootstrap</title>
+
+    <!-- Bootstrap CSS desde CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    >
+
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card sombra-suave">
+                    <div class="card-header text-center bg-primary text-white">
+                        <h3>Cálculo de Área y Perímetro de un Triángulo</h3>
+                    </div>
+                    <div class="card-body">
+
+                        <!-- Mensaje de error -->
+                        {% if error %}
+                            <div class="alert alert-danger">
+                                {{ error }}
+                            </div>
+                        {% endif %}
+
+                        <!-- Formulario (POST) -->
+                        <form method="POST" action="/">
+                            <div class="mb-3">
+                                <label class="form-label">Base: <span class="text-danger">*</span></label>
+                                <input type="number" step="0.01" name="base"
+                                       class="form-control" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Altura: <span class="text-danger">*</span></label>
+                                <input type="number" step="0.01" name="altura"
+                                       class="form-control" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Lado 1: <span class="text-danger">*</span></label>
+                                <input type="number" step="0.01" name="lado1"
+                                       class="form-control" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Lado 2: <span class="text-danger">*</span></label>
+                                <input type="number" step="0.01" name="lado2"
+                                       class="form-control" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100">
+                                Calcular
+                            </button>
+                        </form>
+
+                        <!-- Resultados -->
+                        {% if resultado %}
+                            <hr class="my-4">
+                            <h5 class="text-center mb-3">Resultados</h5>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <strong>Base:</strong> {{ resultado.base }}
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Altura:</strong> {{ resultado.altura }}
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Lado 1:</strong> {{ resultado.lado1 }}
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Lado 2:</strong> {{ resultado.lado2 }}
+                                </li>
+                                <li class="list-group-item list-group-item-success">
+                                    <strong>Área:</strong> {{ resultado.area }}
+                                </li>
+                                <li class="list-group-item list-group-item-info">
+                                    <strong>Perímetro:</strong> {{ resultado.perimetro }}
+                                </li>
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (opcional) -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous">
+    </script>
+
+</body>
+</html>
